@@ -50,6 +50,10 @@ class ProfileUser(AbstractUser):
     objects = ProfileUserManager()
 
     def create_activation_code(self):
+        """
+        Function that generates individual activation_code for each user
+        for register/login
+        """
         activation_code = uuid.uuid4()
         if ProfileUser.objects.filter(activation_code=activation_code).exist():
             self.create_activation_code()

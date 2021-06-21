@@ -32,12 +32,12 @@ class LoginSerializer(serializers.Serializer):
     phone_number = serializers.CharField(required=True)
 
     def validate(self, attrs):
-        phone_number = attrs.get('phone_number')
+        phone = attrs.get('phone')
 
-        if phone_number:
+        if phone:
             user = authenticate(
                 request=self.context.get('request'),
-                phone_number=phone_number
+                phone_number=phone
             )
             if not user:
                 raise serializers.ValidationError(
