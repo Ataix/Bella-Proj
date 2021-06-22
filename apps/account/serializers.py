@@ -8,9 +8,11 @@ ProfileUser = get_user_model()
 class ProfileUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProfileUser
-        fields = ('first_name',
-                  'last_name',
-                  'phone')
+        fields = (
+            'first_name',
+            'last_name',
+            'phone'
+        )
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -18,9 +20,11 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProfileUser
-        fields = ('first_name',
-                  'last_name',
-                  'phone')
+        fields = (
+            'first_name',
+            'last_name',
+            'phone'
+        )
 
     def validate_phone(self, value):
         if ProfileUser.objects.filter(phone=value).exists():
@@ -29,7 +33,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 class LoginSerializer(serializers.Serializer):
-    phone_number = serializers.CharField(required=True)
+    phone = serializers.CharField(required=True)
 
     def validate(self, attrs):
         phone = attrs.get('phone')

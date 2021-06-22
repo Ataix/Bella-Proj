@@ -12,13 +12,13 @@ ProfileUser = get_user_model()
 
 class AccountCreateService:
 
-    def post(self, request):
+    def get_response(self, request) -> Response:
         data = request.data
         serializer = RegisterSerializer(data=data)
         if serializer.is_valid(raise_exception=True):
             phone = serializer.validated_data['phone']
             if phone:
-                user = get_user_model().objects.all(phone=phone)
+                user = get_user_model().objects.filter(phone=phone)
                 user.create_activation_code()
                 return Response(
                     {'message': "Created User with received phone"},
@@ -33,7 +33,7 @@ class AccountCreateService:
 
 class AccountLoginService:
 
-    def get(self, request, activation_code):
+    def get_response(self, request, activation_code) -> Response:
         user = get_object_or_404(ProfileUser, activation_code=activation_code)
         user.activation_code = ''
         user.save()
@@ -45,7 +45,7 @@ class AccountLoginService:
 
 class AccountLogoutService:
 
-    def post(self, request):
+    def delete_token(self, request) -> Response:
         user = request.user
         Token.objects.filter(user=user).delete()
         return Response('Successful logout')
