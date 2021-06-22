@@ -16,7 +16,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'apps.templates_app',
+    'rest_framework',
+    'drf_yasg',
+
+    'apps.account',
 ]
 
 MIDDLEWARE = [
@@ -74,6 +77,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+AUTH_USER_MODEL = 'account.ProfileUser'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
