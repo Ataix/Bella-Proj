@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from rest_framework.authtoken.views import ObtainAuthToken
 
 from rest_framework.generics import GenericAPIView, CreateAPIView
 from rest_framework.permissions import IsAuthenticated
@@ -24,7 +25,7 @@ class RegisterView(AccountCreateService, CreateAPIView):
     serializer_class = RegisterSerializer
 
 
-class LoginView(AccountLoginService, GenericAPIView):
+class LoginView(AccountLoginService, ObtainAuthToken):
     serializer_class = LoginSerializer
 
 

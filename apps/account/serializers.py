@@ -1,4 +1,4 @@
-from django.contrib.auth import get_user_model, authenticate
+from django.contrib.auth import get_user_model
 
 from rest_framework import serializers
 
@@ -16,7 +16,6 @@ class ProfileUserSerializer(serializers.ModelSerializer):
 
 
 class RegisterSerializer(serializers.ModelSerializer):
-    phone = serializers.CharField(required=True)
 
     class Meta:
         model = ProfileUser
@@ -37,12 +36,8 @@ class LoginSerializer(serializers.Serializer):
 
     def validate(self, attrs):
         phone = attrs.get('phone')
-
         if phone:
-            user = authenticate(
-                request=self.context.get('request'),
-                phone_number=phone
-            )
+            user = ProfileUser.objects.filter(phone=phone).first()
             if not user:
                 raise serializers.ValidationError(
                     "Can't login",
