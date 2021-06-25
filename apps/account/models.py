@@ -8,9 +8,13 @@ class ProfileUserManager(BaseUserManager):
     Manager model that allows register with no username
     """
     def _create_user(self, phone, password, **kwargs):
+        """
+        Creates user without password and username.
+        Uses only phone number
+        """
         if not phone:
             raise ValueError('Phone number must be set')
-        user = self.model(phone_number=phone, **kwargs)
+        user = self.model(phone=phone, **kwargs)
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -42,4 +46,4 @@ class ProfileUser(AbstractUser):
     objects = ProfileUserManager()
 
     def __str__(self):
-        return self.phone_number
+        return self.phone
