@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 
 from rest_framework import permissions
 
@@ -22,6 +22,10 @@ schema_view = get_schema_view(
     permission_classes=(permissions.AllowAny,),
 )
 
+v1_api = (
+    [path('account/', include('apps.account.urls'))], 'v1'
+)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,6 +33,7 @@ urlpatterns = [
         'swagger/', schema_view.with_ui('swagger', cache_timeout=0),
         name='schema-swagger-ui'
     ),
+    re_path(r'api/v1/', include(v1_api, namespace='v1'))
 ]
 
 if settings.DEBUG:
