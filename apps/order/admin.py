@@ -1,3 +1,13 @@
 from django.contrib import admin
 
-# Register your models here.
+from apps.order.models import OrderItem, Order
+
+
+@admin.register(OrderItem)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('__str__',)
+
+
+@admin.register(Order)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('__str__',)
