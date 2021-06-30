@@ -11,11 +11,11 @@ class OrderItem(models.Model):
     Model that characterises each item of order
     """
     product = models.ForeignKey(
-        Product, on_delete=models.CASCADE, related_name='Товар в заказе'
+        Product, on_delete=models.CASCADE, verbose_name='Товар в заказе'
     )
-    quantity = models.IntegerField(related_name='Количество товаров')
+    quantity = models.IntegerField(verbose_name='Количество товаров')
     price = models.DecimalField(
-        max_digits=10, decimal_places=2, related_name='Цена товара'
+        max_digits=10, decimal_places=2, verbose_name='Цена товара'
     )
 
     class Meta:
@@ -32,30 +32,30 @@ class Order(models.Model):
     """
     user = models.ForeignKey(
         ProfileUser, on_delete=models.CASCADE,
-        related_name='Заказщик', null=True
+        verbose_name='Заказщик', null=True
     )
     created_at = models.DateTimeField(
-        auto_now_add=True, related_name='Время создания заказа'
+        auto_now_add=True, verbose_name='Время создания заказа'
     )
     customer_first_name = models.CharField(
-        max_length=50, related_name='Имя заказщика'
+        max_length=50, verbose_name='Имя заказщика'
     )
     customer_last_name = models.CharField(
-        max_length=50, related_name='Фамилия заказщика'
+        max_length=50, verbose_name='Фамилия заказщика'
     )
     customer_city = models.CharField(
-        max_length=50, related_name='Город поставки'
+        max_length=50, verbose_name='Город поставки'
     )
     customer_country = models.CharField(
-        max_length=50, related_name='Страна поставки'
+        max_length=50, verbose_name='Страна поставки'
     )
     customer_phone = models.CharField(
-        max_length=20, related_name='Телефон заказщика'
+        max_length=20, verbose_name='Телефон заказщика'
     )
     total = models.DecimalField(
-        max_digits=10, decimal_places=2, related_name='Итоговая цена заказа'
+        max_digits=10, decimal_places=2, verbose_name='Итоговая цена заказа'
     )
-    items = models.ManyToManyField(OrderItem, related_name='Товары заказа')
+    items = models.ManyToManyField(OrderItem, verbose_name='Товары заказа')
 
     class Meta:
         verbose_name = 'Заказ'
