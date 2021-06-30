@@ -21,3 +21,13 @@ class OrderSerializer(serializers.ModelSerializer):
             'customer_city', 'customer_country', 'customer_phone', 'total',
             'items'
         )
+
+
+class OrderUpdateSerializer(serializers.ModelSerializer):
+    items = OrderItemSerializer(many=True)
+
+    class Meta:
+        model = Order
+        fields = (
+            'customer_city', 'customer_country', 'items', 'total'
+        )
