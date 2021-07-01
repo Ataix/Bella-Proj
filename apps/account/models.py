@@ -38,7 +38,10 @@ class ProfileUser(AbstractUser):
     first_name = models.CharField(max_length=50, verbose_name='Имя')
     last_name = models.CharField(max_length=50, verbose_name='Фамилия')
     phone = models.CharField(max_length=50, unique=True, verbose_name='Телефон')
-    order = models.CharField(max_length=150, blank=True, null=True)
+    order = models.CharField(
+        max_length=150, blank=True, null=True,
+        verbose_name='Заказы пользователя'
+    )
 
     username = None
     USERNAME_FIELD = 'phone'
