@@ -4,10 +4,13 @@ from apps.order.models import OrderItem, Order
 
 
 @admin.register(OrderItem)
-class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('__str__',)
+class OrderItemAdmin(admin.ModelAdmin):
+    list_display = ('product', 'quantity', 'price')
 
 
 @admin.register(Order)
-class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('__str__',)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = (
+        'user', 'created_at', 'customer_first_name', 'customer_last_name',
+        'customer_city', 'customer_country', 'customer_phone', 'total', 'items'
+    )

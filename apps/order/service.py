@@ -1,24 +1,17 @@
-from rest_framework import status
 from rest_framework.response import Response
 
 from apps.order.models import Order
-from apps.order.serializers import OrderSerializer
 
 
-class OrderCreateService:
-    def create(self, request) -> Response:
-        data = request.data
-        serializer = OrderSerializer(data=data)
-        if serializer.is_valid(raise_exception=True):
-            user = serializer.validated_data['user']
-            if user:
-                serializer.validated_data['customer_first_name'] = user.first_name
-                serializer.validated_data['customer_last_name'] = user.last_name
-                serializer.validated_data['customer_phone'] = user.phone
-                order = Order.objects.create(**serializer.validated_data)
-                return Response({'message': 'Created order with user'},
-                                status=status.HTTP_201_CREATED)
-            else:
-                order = Order.objects.create(**serializer.validated_data)
-                return Response({'message': 'Created order with no user'},
-                                status=status.HTTP_201_CREATED)
+class OrderListService:
+    def list(self, request, *args, **kwargs):
+        order_queryset = Order.objects.filter(user=request.user)
+        queryset = self.filter_queryset(order_queryset)
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)

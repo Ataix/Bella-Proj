@@ -10,8 +10,8 @@ class OrderItem(models.Model):
     """
     Model that characterises each item of order
     """
-    product = models.ForeignKey(
-        Product, on_delete=models.CASCADE, verbose_name='Товар в заказе'
+    product = models.ManyToManyField(
+        Product, verbose_name='Товар в заказе'
     )
     quantity = models.IntegerField(verbose_name='Количество товаров')
     price = models.DecimalField(

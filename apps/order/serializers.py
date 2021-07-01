@@ -6,9 +6,7 @@ from apps.order.models import Order, OrderItem
 class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItem
-        fields = (
-            'product', 'quantity', 'price'
-        )
+        fields = ('product', 'quantity', 'price')
 
 
 class OrderSerializer(serializers.ModelSerializer):
@@ -28,6 +26,4 @@ class OrderUpdateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = (
-            'customer_city', 'customer_country', 'items', 'total'
-        )
+        fields = ('customer_city', 'customer_country', 'items', 'total')
