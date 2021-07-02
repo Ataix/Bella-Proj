@@ -1,5 +1,5 @@
 from rest_framework.generics import (
-    CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView
+    CreateAPIView, RetrieveAPIView, UpdateAPIView
 )
 
 from apps.order.models import Order
@@ -12,7 +12,7 @@ class OrderCreateView(CreateAPIView):
     serializer_class = OrderSerializer
 
 
-class OrderListView(OrderListService, ListAPIView):
+class OrderListView(OrderListService):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
 

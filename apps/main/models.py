@@ -1,7 +1,9 @@
 from django.db import models
 
+from singleton_models.models import SingletonModel
 
-class Delivery(models.Model):
+
+class Delivery(SingletonModel):
     """
     Characterize static information about delivery
     """
@@ -14,8 +16,15 @@ class Delivery(models.Model):
         upload_to='main_static', verbose_name='Ниэнее фото о доставке'
     )
 
+    def __unicode__(self):
+        return u'Доставка'
 
-class AboutUs(models.Model):
+    class Meta:
+        verbose_name = 'Доставка'
+        verbose_name_plural = 'Доставки'
+
+
+class AboutUs(SingletonModel):
     """
     Characterize static information about company
     """
@@ -28,8 +37,15 @@ class AboutUs(models.Model):
     upward_text = models.TextField(verbose_name='Ввержний текст о компании')
     bottom_text = models.TextField(verbose_name='Нижниий текст о компании')
 
+    def __unicode__(self):
+        return u'О Нас'
 
-class Contact(models.Model):
+    class Meta:
+        verbose_name = 'О Нас'
+        verbose_name_plural = 'О Нас'
+
+
+class Contact(SingletonModel):
     """
     Represent information about how to contact company
     """
@@ -53,8 +69,15 @@ class Contact(models.Model):
         max_length=60, verbose_name="Профиль компании в 'Facebook'"
     )
 
+    def __unicode__(self):
+        return u'Контакты'
 
-class WaysOfPayment(models.Model):
+    class Meta:
+        verbose_name = 'Контакты'
+        verbose_name_plural = 'Контакты'
+
+
+class WaysOfPayment(SingletonModel):
     """
     Contains information about payments
     """
@@ -63,8 +86,15 @@ class WaysOfPayment(models.Model):
     requisite_2 = models.CharField(max_length=60, verbose_name='Реквизит 2')
     requisite_3 = models.CharField(max_length=60, verbose_name='Реквизит 3')
 
+    def __unicode__(self):
+        return u'Способы оплаты'
 
-class QuestionAndAnswer(models.Model):
+    class Meta:
+        verbose_name = 'Способы оплаты'
+        verbose_name_plural = 'Способы оплаты'
+
+
+class QuestionAndAnswer(SingletonModel):
     """
     Characterize customers' questions and company's response to questions
     """
@@ -77,8 +107,15 @@ class QuestionAndAnswer(models.Model):
     )
     bottom_answer = models.TextField(verbose_name='Ответ на нижний вопрос')
 
+    def __unicode__(self):
+        return u'Вопросы и Ответы'
 
-class ProductReturn(models.Model):
+    class Meta:
+        verbose_name = 'Вопросы и Ответы'
+        verbose_name_plural = 'Вопросы и Ответы'
+
+
+class ProductReturn(SingletonModel):
     """
     Contains information about product refund (return)
     """
@@ -89,8 +126,15 @@ class ProductReturn(models.Model):
         verbose_name='Нижний текст о возврате товара'
     )
 
+    def __unicode__(self):
+        return u'Возврат Товара'
 
-class Requisite(models.Model):
+    class Meta:
+        verbose_name = 'Возврат Товара'
+        verbose_name_plural = 'Возврат Товара'
+
+
+class Requisite(SingletonModel):
     """
     Contains company's requisites
     """
@@ -98,16 +142,30 @@ class Requisite(models.Model):
     requisite_2 = models.CharField(max_length=60, verbose_name='Реквизит 2')
     requisite_3 = models.CharField(max_length=60, verbose_name='Реквизит 3')
 
+    def __unicode__(self):
+        return u'Реквизиты'
 
-class PublicOffer(models.Model):
+    class Meta:
+        verbose_name = 'Реквизиты'
+        verbose_name_plural = 'Реквизиты'
+
+
+class PublicOffer(SingletonModel):
     """
     Characterize information about company's public offer
     """
     upward_text = models.TextField(verbose_name='Вверхний текст')
     bottom_text = models.TextField(verbose_name='Нижний текст')
 
+    def __unicode__(self):
+        return u'Публичная Оферта'
 
-class HowToMakeOrder(models.Model):
+    class Meta:
+        verbose_name = 'Публичная Оферта'
+        verbose_name_plural = 'Публичная Оферта'
+
+
+class HowToMakeOrder(SingletonModel):
     """
     Contains information about making an offer
     """
@@ -125,6 +183,13 @@ class HowToMakeOrder(models.Model):
         upload_to='main_static',
         verbose_name='Нижнее фото об оформлении заказа'
     )
+
+    def __unicode__(self):
+        return u'Как Сделать Заказ'
+
+    class Meta:
+        verbose_name = 'Как Сделать Заказ'
+        verbose_name_plural = 'Как Сделать Заказ'
 
 
 class News(models.Model):
