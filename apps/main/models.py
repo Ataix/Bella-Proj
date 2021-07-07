@@ -1,6 +1,6 @@
 from django.db import models
 
-from singleton_models.models import SingletonModel
+from apps.main.singleton_model import SingletonModel
 
 
 class Delivery(SingletonModel):

@@ -3,6 +3,8 @@ from django.db import models
 
 ProfileUser = get_user_model()
 
+Product = 'Product'
+
 
 class OrderItem(models.Model):
     """

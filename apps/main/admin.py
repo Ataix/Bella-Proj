@@ -1,11 +1,10 @@
 from django.contrib import admin
 
-from singleton_models.admin import SingletonModelAdmin
-
 from apps.main.models import (
     Delivery, AboutUs, Contact, WaysOfPayment, QuestionAndAnswer,
     ProductReturn, Requisite, PublicOffer, HowToMakeOrder, News
 )
+from apps.main.singleton_admin import SingletonModelAdmin
 
 
 @admin.register(Delivery)
