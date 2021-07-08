@@ -1,9 +1,9 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
-ProfileUser = get_user_model()
+from apps.product.models import Product
 
-Product = 'Product'
+ProfileUser = get_user_model()
 
 
 class OrderItem(models.Model):
@@ -30,9 +30,9 @@ class Order(models.Model):
     """
     Model that characterises order of each user
     """
-    user = models.ForeignKey(
+    customer_user = models.ForeignKey(
         ProfileUser, on_delete=models.CASCADE,
-        verbose_name='Заказщик', null=True
+        verbose_name='Заказщик', null=True, related_name='customer_user'
     )
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name='Время создания заказа'

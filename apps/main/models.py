@@ -16,8 +16,8 @@ class Delivery(SingletonModel):
         upload_to='main_static', verbose_name='Ниэнее фото о доставке'
     )
 
-    def __unicode__(self):
-        return u'Доставка'
+    def __str__(self):
+        return 'Доставка'
 
     class Meta:
         verbose_name = 'Доставка'
@@ -37,8 +37,8 @@ class AboutUs(SingletonModel):
     upward_text = models.TextField(verbose_name='Ввержний текст о компании')
     bottom_text = models.TextField(verbose_name='Нижниий текст о компании')
 
-    def __unicode__(self):
-        return u'О Нас'
+    def __str__(self):
+        return 'О Нас'
 
     class Meta:
         verbose_name = 'О Нас'
@@ -69,8 +69,8 @@ class Contact(SingletonModel):
         max_length=60, verbose_name="Профиль компании в 'Facebook'"
     )
 
-    def __unicode__(self):
-        return u'Контакты'
+    def __str__(self):
+        return 'Контакты'
 
     class Meta:
         verbose_name = 'Контакты'
@@ -86,8 +86,8 @@ class WaysOfPayment(SingletonModel):
     requisite_2 = models.CharField(max_length=60, verbose_name='Реквизит 2')
     requisite_3 = models.CharField(max_length=60, verbose_name='Реквизит 3')
 
-    def __unicode__(self):
-        return u'Способы оплаты'
+    def __str__(self):
+        return 'Способы оплаты'
 
     class Meta:
         verbose_name = 'Способы оплаты'
@@ -126,8 +126,8 @@ class ProductReturn(SingletonModel):
         verbose_name='Нижний текст о возврате товара'
     )
 
-    def __unicode__(self):
-        return u'Возврат Товара'
+    def __str__(self):
+        return 'Возврат Товара'
 
     class Meta:
         verbose_name = 'Возврат Товара'
@@ -142,8 +142,8 @@ class Requisite(SingletonModel):
     requisite_2 = models.CharField(max_length=60, verbose_name='Реквизит 2')
     requisite_3 = models.CharField(max_length=60, verbose_name='Реквизит 3')
 
-    def __unicode__(self):
-        return u'Реквизиты'
+    def __str__(self):
+        return 'Реквизиты'
 
     class Meta:
         verbose_name = 'Реквизиты'
@@ -157,8 +157,8 @@ class PublicOffer(SingletonModel):
     upward_text = models.TextField(verbose_name='Вверхний текст')
     bottom_text = models.TextField(verbose_name='Нижний текст')
 
-    def __unicode__(self):
-        return u'Публичная Оферта'
+    def __str__(self):
+        return 'Публичная Оферта'
 
     class Meta:
         verbose_name = 'Публичная Оферта'
@@ -184,8 +184,8 @@ class HowToMakeOrder(SingletonModel):
         verbose_name='Нижнее фото об оформлении заказа'
     )
 
-    def __unicode__(self):
-        return u'Как Сделать Заказ'
+    def __str__(self):
+        return 'Как Сделать Заказ'
 
     class Meta:
         verbose_name = 'Как Сделать Заказ'

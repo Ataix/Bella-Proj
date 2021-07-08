@@ -10,7 +10,7 @@ class OrderListService(ListAPIView):
         Overrides generic's ListAPIView's list function for customize queryset
         """
         queryset = self.filter_queryset(
-            Order.objects.filter(user=request.user)
+            Order.objects.filter(customer_user=request.user)
         )
         page = self.paginate_queryset(queryset)
         if page is not None:
