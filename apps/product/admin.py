@@ -1,18 +1,12 @@
 from django.contrib import admin
 
-from apps.product.models import Image, Category, Product, Colour, Wish
+from .models import Image, Category, Product, Colour, Wish
 
 
 class ImgInline(admin.TabularInline):
     model = Image
     extra = 1
     fields = ('image',)
-
-
-class ProductFull(admin.ModelAdmin):
-    inlines = [
-        ImgInline
-    ]
 
 
 @admin.register(Category)
@@ -24,8 +18,11 @@ class CategoryAdmin(admin.ModelAdmin):
     )
 
 
-@admin.register(Product, ProductFull)
+@admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
+    inlines = [
+        ImgInline
+    ]
     list_display = (
         'name',
         'article',

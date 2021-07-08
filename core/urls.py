@@ -34,7 +34,7 @@ urlpatterns = [
         'swagger/', schema_view.with_ui('swagger', cache_timeout=0),
         name='schema-swagger-ui'
     ),
-    re_path(r'api/v1/', include(v1_api, namespace='v1'))
+    re_path(r'api/v1/', include(v1_api, namespace='v1')),
 ]
 
 if settings.DEBUG:
