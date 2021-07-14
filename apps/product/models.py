@@ -65,6 +65,9 @@ class Product(models.Model):
     categories = models.ManyToManyField(
         Category, verbose_name='Категория товара'
     )
+    create_date = models.DateTimeField(
+        auto_created=True, verbose_name='Время добавления'
+    )
 
     def __str__(self):
         return self.article
