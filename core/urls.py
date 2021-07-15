@@ -23,8 +23,10 @@ schema_view = get_schema_view(
 )
 
 v1_api = (
-    [path('account/', include('apps.account.urls'))], 'v1',
-    [path('order/', include('apps.order.urls'))], 'v1'
+    [
+        path('account/', include('apps.account.urls')),
+        path('order/', include('apps.order.urls')),
+    ], 'v1',
 )
 
 
