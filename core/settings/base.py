@@ -83,6 +83,18 @@ USE_L10N = True
 
 USE_TZ = True
 
+CATEGORY_SEASON_CHOICES = (
+    ('зима', 'Зима'),
+    ('лето', 'Лето'),
+    ('весна', 'Весна'),
+    ('осень', 'Осень')
+)
+
+COLOUR_CHOICES = (
+    ('белый', 'Белый'),
+    ('черный', 'Черный')
+)
+
 AUTH_USER_MODEL = 'account.ProfileUser'
 
 REST_FRAMEWORK = {

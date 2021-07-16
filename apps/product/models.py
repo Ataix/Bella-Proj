@@ -1,17 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
-CATEGORY_SEASON_CHOICES = (
-    ('зима', 'Зима'),
-    ('лето', 'Лето'),
-    ('весна', 'Весна'),
-    ('осень', 'Осень')
-)
-
-COLOUR_CHOICES = (
-    ('белый', 'Белый'),
-    ('черный', 'Черный')
-)
+from core.settings.base import CATEGORY_SEASON_CHOICES, COLOUR_CHOICES
 
 ProfileUser = get_user_model()
 
