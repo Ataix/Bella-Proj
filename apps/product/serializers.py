@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from apps.product.models import Category, Product, Wish
+from apps.product.utils import ImageUrl
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -34,7 +35,7 @@ class WishSerializer(serializers.ModelSerializer):
         return representation
 
 
-class ProductListSerializer(serializers.ModelSerializer):
+class ProductListSerializer(ImageUrl, serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = (
@@ -48,16 +49,6 @@ class ProductListSerializer(serializers.ModelSerializer):
             'categories',
         )
 
-    def _get_image_url(self, obj):
-        request = self.context.get('request')
-        image_obj = obj.images.first()
-        if image_obj is not None and image_obj.image:
-            url = image_obj.image.url
-            if request is not None:
-                url = request.build_absolute_uri(url)
-            return url
-        return ''
-
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         representation['image'] = self._get_img_url(instance)
@@ -67,7 +58,7 @@ class ProductListSerializer(serializers.ModelSerializer):
         return representation
 
 
-class ProductRetrieveSerializer(serializers.ModelSerializer):
+class ProductRetrieveSerializer(ImageUrl, serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = (
@@ -84,16 +75,6 @@ class ProductRetrieveSerializer(serializers.ModelSerializer):
             'is_popular',
             'categories',
         )
-
-    def _get_image_url(self, obj):
-        request = self.context.get('request')
-        image_obj = obj.images.first()
-        if image_obj is not None and image_obj.image:
-            url = image_obj.image.url
-            if request is not None:
-                url = request.build_absolute_uri(url)
-            return url
-        return ''
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
