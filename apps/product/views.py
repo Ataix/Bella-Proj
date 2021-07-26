@@ -1,5 +1,5 @@
 from rest_framework.generics import (
-    ListAPIView, RetrieveAPIView,CreateAPIView, DestroyAPIView
+    ListAPIView, RetrieveAPIView, CreateAPIView, DestroyAPIView
 )
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
@@ -25,6 +25,7 @@ class CategoryListView(ListAPIView):
 
 class ProductListView(ListAPIView):
     queryset = Product.objects.all()
+    pagination_class = BellaPagination
     serializer_class = ProductListSerializer
 
 
